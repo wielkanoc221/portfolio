@@ -1,0 +1,10 @@
+PORTFOLIO — ANDRZEJ PIĘTKA
+
+1. Rozpakuj całe archiwum ZIP.
+2. Otwórz index.html w przeglądarce.
+
+Pliki index.html i folder assets muszą pozostać obok siebie.
+Cała strona działa lokalnie, bez instalowania dodatkowych programów.
+Aby umieścić stronę na własnym serwerze, skopiuj index.html i folder assets do katalogu obsługiwanego przez serwer WWW.
+
+Zawartość: pełna treść portfolio, wszystkie 11 oryginalnych zdjęć i wykresów, style CSS i skrypt JavaScript.

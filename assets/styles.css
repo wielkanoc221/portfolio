@@ -1,0 +1,114 @@
+
+    #ap-portfolio-chronologia{--paper:#f4f0e7;--ink:#20211f;--sage:#65705b;--line:#d6d1c6;--muted:#5d6058;background:var(--paper);color:var(--ink);font:15px/1.65 Arial,Helvetica,sans-serif;isolation:isolate}
+    #ap-portfolio-chronologia *{box-sizing:border-box}
+    #ap-portfolio-chronologia h1,#ap-portfolio-chronologia h2,#ap-portfolio-chronologia h3,#ap-portfolio-chronologia p,#ap-portfolio-chronologia figure{margin:0}
+    #ap-portfolio-chronologia a{color:inherit;text-decoration:none}
+    #ap-portfolio-chronologia button{font:inherit}
+    #ap-portfolio-chronologia a:focus-visible,#ap-portfolio-chronologia button:focus-visible,#ap-portfolio-chronologia summary:focus-visible{outline:2px solid var(--sage);outline-offset:5px}
+    #ap-portfolio-chronologia .ap-pad{padding-left:clamp(22px,5vw,60px);padding-right:clamp(22px,5vw,60px)}
+    #ap-portfolio-chronologia .ap-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:26px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+    #ap-portfolio-chronologia .ap-mark{font:32px/1 Georgia,serif;letter-spacing:-2px}
+    #ap-portfolio-chronologia .ap-navlinks{display:flex;gap:24px;align-items:center;font-size:12px;flex-wrap:wrap}
+    #ap-portfolio-chronologia .ap-navlinks a{padding:8px 0}
+    #ap-portfolio-chronologia a:hover{color:var(--sage)}
+    #ap-portfolio-chronologia .ap-hero{padding-top:55px;padding-bottom:46px}
+    #ap-portfolio-chronologia .ap-eyebrow{color:var(--sage);font-size:11px;font-weight:500;letter-spacing:1.8px;text-transform:uppercase}
+    #ap-portfolio-chronologia h1{font:400 clamp(43px,6.5vw,70px)/1.08 Georgia,serif;letter-spacing:-2px;margin-top:19px;max-width:780px}
+    #ap-portfolio-chronologia .ap-intro{font-size:15px;max-width:555px;margin-top:23px;color:var(--muted)}
+    #ap-portfolio-chronologia .ap-jump{display:inline-flex;align-items:center;gap:27px;background:var(--ink);color:var(--paper);padding:11px 18px;margin-top:24px;border-radius:3px;font-size:12px}
+    #ap-portfolio-chronologia .ap-jump:hover{background:#414638;color:var(--paper)}
+    #ap-portfolio-chronologia .ap-chapter{padding-top:31px;padding-bottom:36px;border-top:1px solid var(--line);scroll-margin-top:12px}
+    #ap-portfolio-chronologia .ap-chapter:nth-of-type(odd){background:#eee9df}
+    #ap-portfolio-chronologia .ap-chapterline{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+    #ap-portfolio-chronologia .ap-chapterline::after{content:'';height:1px;flex:1;background:var(--line)}
+    #ap-portfolio-chronologia .ap-chapterline .ap-eyebrow{flex-shrink:0}
+    #ap-portfolio-chronologia .ap-project>summary{display:flex;justify-content:space-between;align-items:center;gap:22px;list-style:none}
+    #ap-portfolio-chronologia .ap-project>summary::-webkit-details-marker{display:none}
+    #ap-portfolio-chronologia .ap-summary-copy{min-width:0}
+    #ap-portfolio-chronologia .ap-teaser{display:block;color:var(--muted);font:13px/1.6 Arial,sans-serif;max-width:650px;margin-top:12px}
+    #ap-portfolio-chronologia .ap-toggle{font-size:11px;color:var(--sage);display:flex;align-items:center;gap:14px;flex-shrink:0}
+    #ap-portfolio-chronologia .ap-toggle::after{content:'+';font:27px/1 Georgia,serif}
+    #ap-portfolio-chronologia .ap-toggle .ap-less{display:none}
+    #ap-portfolio-chronologia .ap-project[open]>.ap-project-summary .ap-more{display:none}
+    #ap-portfolio-chronologia .ap-project[open]>.ap-project-summary .ap-less{display:inline}
+    #ap-portfolio-chronologia .ap-project[open]>.ap-project-summary .ap-toggle::after{content:'−'}
+    #ap-portfolio-chronologia .ap-project-content{padding-top:27px}
+    #ap-portfolio-chronologia h2{font:400 clamp(30px,4.4vw,44px)/1.12 Georgia,serif;letter-spacing:-.8px}
+    #ap-portfolio-chronologia .ap-text{color:var(--muted);font-size:14px;max-width:680px}
+    #ap-portfolio-chronologia .ap-text p+p{margin-top:14px}
+    #ap-portfolio-chronologia .ap-heading-text{margin-top:18px}
+    #ap-portfolio-chronologia .ap-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center}
+    #ap-portfolio-chronologia .ap-stack{font-size:11px;letter-spacing:.4px;color:var(--sage);margin-top:19px}
+    #ap-portfolio-chronologia .ap-build{border-left:1px solid #b7bdab;padding-left:23px}
+    #ap-portfolio-chronologia .ap-build>div+div{margin-top:17px}
+    #ap-portfolio-chronologia .ap-build h3{font:400 21px/1.2 Georgia,serif}
+    #ap-portfolio-chronologia .ap-build p{font-size:12px;color:var(--muted);margin-top:4px}
+    #ap-portfolio-chronologia .ap-photo-wrap{padding:10px 0;background:radial-gradient(ellipse,#dcd3c3aa,transparent 72%)}
+    #ap-portfolio-chronologia .ap-photo{display:block;width:100%;height:auto;border-radius:3px;box-shadow:0 18px 28px -21px #30291f70}
+    #ap-portfolio-chronologia .ap-caption{margin-top:10px;font-size:11px;color:var(--muted)}
+    #ap-portfolio-chronologia .ap-detail{margin-top:16px}
+    #ap-portfolio-chronologia .ap-detail summary{font-size:12px;color:var(--sage);padding:5px 0}
+    #ap-portfolio-chronologia .ap-detail p{font-size:13px;color:var(--muted);margin-top:9px}
+    #ap-portfolio-chronologia .ap-years{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin-top:26px}
+    #ap-portfolio-chronologia .ap-year{border-top:1px solid #b6bdab;padding-top:13px}
+    #ap-portfolio-chronologia .ap-year small{color:var(--sage);font-size:11px}
+    #ap-portfolio-chronologia .ap-year h3{font:400 22px/1.2 Georgia,serif;margin-top:6px}
+    #ap-portfolio-chronologia .ap-year p{font-size:12px;color:var(--muted);margin-top:8px}
+    #ap-portfolio-chronologia .ap-ml-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    #ap-portfolio-chronologia .ap-status{font-size:11px;color:var(--sage)}
+    #ap-portfolio-chronologia .ap-ml-subtitle{font:400 22px/1.3 Georgia,serif;margin-top:9px}
+    #ap-portfolio-chronologia .ap-ml-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:29px;align-items:center;margin-top:24px}
+    #ap-portfolio-chronologia .ap-graph{min-width:0}
+    #ap-portfolio-chronologia .ap-graph-image{display:block;width:100%;height:auto;background:#fff;border:1px solid #dfddd6;border-radius:3px;box-shadow:0 14px 28px -20px #5d624a40}
+    #ap-portfolio-chronologia .ap-graph .ap-caption{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    #ap-portfolio-chronologia .ap-expand{border:0;border-bottom:1px solid #9b9f8e;background:none;color:var(--sage);padding:3px 0;font-size:11px;flex-shrink:0}
+    #ap-portfolio-chronologia .ap-ml-layout.ap-expanded{grid-template-columns:1fr}
+    #ap-portfolio-chronologia .ap-ml-layout.ap-expanded .ap-text{max-width:700px}
+    #ap-portfolio-chronologia .ap-scope{display:flex;gap:10px 24px;flex-wrap:wrap;margin-top:25px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+    #ap-portfolio-chronologia .ap-footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:21px;padding-bottom:25px;font-size:11px;color:var(--muted)}
+    @media(max-width:650px){
+      #ap-portfolio-chronologia .ap-nav{align-items:flex-start;gap:15px}
+      #ap-portfolio-chronologia .ap-navlinks{gap:4px 14px;justify-content:flex-end}
+      #ap-portfolio-chronologia .ap-hero{padding-top:37px;padding-bottom:37px}
+      #ap-portfolio-chronologia h1{letter-spacing:-1px}
+      #ap-portfolio-chronologia .ap-split,#ap-portfolio-chronologia .ap-ml-layout,#ap-portfolio-chronologia .ap-years{grid-template-columns:1fr;gap:23px}
+      #ap-portfolio-chronologia .ap-chapter{padding-top:26px;padding-bottom:30px}
+      #ap-portfolio-chronologia .ap-chapterline{gap:10px}
+      #ap-portfolio-chronologia .ap-chapterline .ap-eyebrow{flex-shrink:1;font-size:10px;letter-spacing:1px}
+      #ap-portfolio-chronologia .ap-build{margin-top:2px}
+      #ap-portfolio-chronologia .ap-toggle{gap:0}
+      #ap-portfolio-chronologia .ap-toggle .ap-more,#ap-portfolio-chronologia .ap-project[open]>.ap-project-summary .ap-toggle .ap-less{display:none}
+      #ap-portfolio-chronologia .ap-expand,#ap-portfolio-chronologia .ap-detail summary{min-height:44px;display:flex;align-items:center}
+    }
+  
+html{color-scheme:light;scroll-behavior:smooth}body{margin:0;background:#f4f0e7}#ap-portfolio-chronologia{max-width:1120px;margin:0 auto}#ap-portfolio-chronologia summary,#ap-portfolio-chronologia button{cursor:pointer}#ap-portfolio-chronologia .ap-project-summary{min-height:76px}#ap-portfolio-chronologia img{max-width:100%}.skip-link{position:absolute;left:16px;top:0;transform:translateY(-110%);z-index:10;background:#20211f;color:#f4f0e7;padding:12px 18px;font:14px Arial}.skip-link:focus{transform:translateY(12px)}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:650px){#ap-portfolio-chronologia h1{font-size:clamp(32px,9.3vw,50px);overflow-wrap:break-word}#ap-portfolio-chronologia .ap-navlinks a{min-height:44px;display:inline-flex;align-items:center}}
+
+/* Full original stories and photographs. */
+#ap-portfolio-chronologia .ap-prose{max-width:720px;margin:0 auto;color:#44473f;font-size:16px;line-height:1.8}
+#ap-portfolio-chronologia .ap-prose p+p{margin-top:20px}
+#ap-portfolio-chronologia .ap-prose ul{padding-left:23px;margin:12px 0 23px}
+#ap-portfolio-chronologia .ap-prose li{padding-left:4px;margin-bottom:7px}
+#ap-portfolio-chronologia .ap-photo-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:30px;margin:30px auto 8px;max-width:850px}
+#ap-portfolio-chronologia .ap-games-gallery{max-width:720px;gap:36px}
+#ap-portfolio-chronologia .ap-ukulele-gallery{max-width:920px;margin:32px auto 8px}
+#ap-portfolio-chronologia .ap-original-photo{min-width:0}
+#ap-portfolio-chronologia .ap-image-open{display:block;width:100%;padding:0;border:0;border-radius:4px;background:transparent;color:inherit;box-shadow:0 20px 32px -26px #403a2c80;cursor:zoom-in}
+#ap-portfolio-chronologia .ap-image-open:focus-visible{outline:2px solid #65705b;outline-offset:6px}
+#ap-portfolio-chronologia .ap-image-surface{display:block}
+#ap-portfolio-chronologia .ap-image-surface img{width:100%;height:auto;display:block;border-radius:4px}
+#ap-portfolio-chronologia .ap-rotated{display:block;position:relative;overflow:hidden;border-radius:4px}
+#ap-portfolio-chronologia .ap-rotated img{position:absolute;left:50%;top:50%;width:var(--photo-width);height:auto;max-width:none;transform:translate(-50%,-50%) rotate(90deg)}
+#ap-portfolio-chronologia .ap-original-photo .ap-caption{font-size:12px;line-height:1.6;margin-top:12px;color:#5d6058}
+#ap-portfolio-chronologia .ap-raw-figure{max-width:545px;margin:30px auto}
+#ap-portfolio-chronologia .ap-processed-figure{max-width:960px;margin:30px auto}
+#ap-portfolio-chronologia .ap-image-dialog{border:1px solid #d6d1c6;border-radius:5px;padding:18px;background:#f4f0e7;color:#20211f;max-width:calc(100vw - 30px);max-height:calc(100dvh - 30px);box-shadow:0 25px 90px #0004;overflow:auto}
+#ap-portfolio-chronologia .ap-image-dialog::backdrop{background:#171914cf}
+#ap-portfolio-chronologia .ap-image-dialog form{display:flex;justify-content:flex-end;margin:0 0 12px}
+#ap-portfolio-chronologia .ap-dialog-close{border:1px solid #c2c5b7;border-radius:3px;min-height:44px;background:#f4f0e7;color:#20211f;padding:8px 15px}
+#ap-portfolio-chronologia .ap-dialog-stage{display:flex;align-items:center;justify-content:center;min-width:0}
+#ap-portfolio-chronologia .ap-dialog-image-box{position:relative;overflow:hidden}
+#ap-portfolio-chronologia #ap-dialog-image{position:absolute;top:50%;left:50%;max-width:none;object-fit:contain;transform-origin:center}
+#ap-portfolio-chronologia #ap-image-caption{font-size:13px;line-height:1.6;text-align:center;margin:14px auto 0;max-width:700px}
+html.ap-modal-open{overflow:hidden}
+@media(max-width:650px){#ap-portfolio-chronologia .ap-prose{font-size:15px;line-height:1.8}#ap-portfolio-chronologia .ap-photo-gallery{grid-template-columns:1fr;gap:27px;max-width:420px}#ap-portfolio-chronologia .ap-image-dialog{padding:12px}#ap-portfolio-chronologia .ap-navlinks{gap:4px 12px}#ap-portfolio-chronologia .ap-chapterline .ap-eyebrow{flex-shrink:1}}
