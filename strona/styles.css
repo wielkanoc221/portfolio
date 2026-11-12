@@ -26,7 +26,7 @@ button{font:inherit;cursor:pointer}
 
 .eyebrow{color:var(--sage);font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase}
 .section{padding:clamp(56px,8vw,96px) 0;border-bottom:1px solid var(--line);scroll-margin-top:68px}
-.section-head{max-width:640px;margin-bottom:40px}
+.section-head{max-width:640px;margin-bottom:32px}
 .section-head h2{font:400 clamp(32px,4.6vw,46px)/1.12 var(--serif);letter-spacing:-.8px;margin-top:12px}
 .section-head p{color:var(--muted);margin-top:14px}
 
@@ -48,14 +48,10 @@ button{font:inherit;cursor:pointer}
 
 /* 3. Podejście */
 .approach{background:var(--paper-2)}
-.approach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.pillar{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
-.pillar h3{font:400 24px/1.2 var(--serif);margin-bottom:18px}
-.pillar ul{list-style:none;margin:0;padding:0}
-.pillar li+li{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.pillar li strong{display:block;font-weight:600;font-size:15px}
-.pillar li span{display:block;color:var(--muted);font-size:14px;margin-top:4px}
-.pillar-num{display:block;font:400 14px/1 var(--serif);color:var(--sage);margin-bottom:10px}
+.approach-box{max-width:860px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sage);border-radius:var(--radius);padding:clamp(24px,4vw,44px) clamp(22px,4.5vw,52px);box-shadow:0 24px 40px -34px #30291f80}
+.approach-lead{font:400 clamp(22px,2.6vw,28px)/1.4 var(--serif);color:var(--ink);letter-spacing:-.2px}
+.approach-text{margin-top:24px;padding-top:24px;border-top:1px solid var(--line);color:#3d4038;font-size:17px;line-height:1.8}
+.approach-text p+p{margin-top:18px}
 
 /* 4. Projekty — kafelki */
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
@@ -113,7 +109,6 @@ figcaption{margin-top:12px;font-size:13px;line-height:1.6;color:var(--muted)}
 html.modal-open{overflow:hidden}
 
 @media (max-width:860px){
-  .approach-grid{grid-template-columns:1fr}
   .hero .wrap{grid-template-columns:1fr}
   .portrait{max-width:300px}
 }
@@ -125,7 +120,6 @@ html.modal-open{overflow:hidden}
   .cards{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr;max-width:420px}
   .prose{font-size:16px}
-  .pillar{padding:22px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
