@@ -123,3 +123,86 @@ html.modal-open{overflow:hidden}
 .card-cover.contain{background:#e4ded1}
 .card-cover.contain img{object-fit:contain}
 .card:hover .card-cover.contain img{transform:none}
+
+/* ============================================================
+   Accur8Pool — demo etykietowania (etykietowanie.html)
+   ============================================================ */
+.demo-callout{max-width:720px;margin:36px auto;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sage);border-radius:var(--radius);padding:22px 26px}
+.demo-callout h3{font:400 22px/1.25 var(--serif)}
+.demo-callout p{color:var(--muted);font-size:14px;margin-top:6px;max-width:440px}
+.demo-callout .btn{margin-top:0}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:6px;text-decoration:none;font-size:14px}
+.btn:hover{background:var(--sage-dark)}
+
+.lab{padding:clamp(28px,4vw,48px) 0 64px}
+.lab-wrap{max-width:1440px;margin:0 auto;padding:0 var(--gutter)}
+.lab-head{max-width:780px;margin-bottom:28px}
+.lab-head h1{font:400 clamp(30px,4vw,42px)/1.15 var(--serif);letter-spacing:-.6px;margin-top:10px}
+.lab-head p:not(.eyebrow){color:var(--muted);margin-top:12px}
+.lab-grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:20px;align-items:start}
+.lab-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;font-size:14px}
+.lab-panel hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.lab-upload-btn{width:100%;min-height:76px;border:1.5px dashed #b9b3a5;border-radius:8px;background:var(--paper);color:var(--muted);padding:12px;font-size:14px}
+.lab-upload-btn:hover,.lab-upload.is-over .lab-upload-btn{border-color:var(--sage);color:var(--sage-dark);background:#eef0e8}
+.lab-note{color:var(--muted);font-size:12px;margin-top:8px}
+.lab-info{font-size:13px;margin:10px 0 4px;color:var(--sage-dark);font-weight:600;overflow-wrap:anywhere}
+.lab-info.is-error,.lab-error{color:#a23b2a}
+.lab-error{font-size:13px;margin-top:8px;min-height:1px}
+.lab-label{display:block;font-weight:600;font-size:13px;margin:14px 0 6px;padding:0}
+.lab-input{width:100%;font:inherit;font-size:14px;padding:8px 10px;border:1px solid #c9c4b8;border-radius:6px;background:#fff;color:var(--ink)}
+.lab-input:disabled{background:var(--paper);color:var(--muted)}
+.lab-fieldset{border:0;margin:0;padding:0;min-width:0}
+.lab-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 8px;max-height:180px;overflow:auto;padding:8px;border:1px solid #c9c4b8;border-radius:6px;background:#fff;font-size:13px}
+.lab-columns label{display:flex;align-items:center;gap:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;min-height:26px}
+.lab-columns .lab-muted{grid-column:1/-1}
+.lab-check{display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer}
+.lab-radios{display:flex;gap:18px;margin-top:8px}
+.lab-radios label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.lab-radios-col{flex-direction:column;gap:6px;margin-top:0}
+.lab-range{margin-top:14px;padding:10px 12px;border-radius:6px;background:var(--paper);color:var(--muted);font-size:13px;line-height:1.5}
+.lab-range.is-set{background:#eef0e8;color:var(--sage-dark)}
+.lab-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lab-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lab-btn{border:1px solid #c2c5b7;border-radius:6px;background:var(--paper);color:var(--ink);padding:9px 13px;font-size:13px;min-height:40px}
+.lab-btn:hover{border-color:var(--sage);background:#eef0e8}
+.lab-btn-primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.lab-btn-primary:hover{background:var(--sage-dark);border-color:var(--sage-dark)}
+.lab-btn-ghost{background:transparent}
+.lab-btn-small{min-height:32px;padding:5px 11px;font-size:12px}
+.lab-full{width:100%;margin-top:10px}
+.lab-muted{color:var(--muted)}
+.lab-main{min-width:0}
+.lab-chart-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.lab-chart-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;min-height:32px}
+.lab-legend{display:flex;flex-wrap:wrap;gap:6px}
+.lab-legend-item{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 10px;font-size:12px;color:var(--ink)}
+.lab-legend-item.is-off{opacity:.45;text-decoration:line-through}
+.lab-swatch{width:14px;height:3px;border-radius:2px}
+.lab-chart{position:relative;height:clamp(340px,58vh,620px);touch-action:pan-y;user-select:none}
+.lab-chart canvas{display:block;cursor:crosshair}
+.lab-chart-empty{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:20px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:6px}
+.lab-chart-empty[hidden]{display:none}
+.lab-readout{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--muted);margin-top:8px;min-height:18px;overflow-wrap:anywhere}
+.lab-h2{font:400 24px/1.2 var(--serif);margin:26px 0 12px}
+.lab-table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.lab-table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.lab-table th,.lab-table td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.lab-table th{font-weight:600;background:var(--paper-2)}
+.lab-table tr:last-child td{border-bottom:0}
+.lab-help{margin-top:22px;font-size:14px;color:var(--muted)}
+.lab-help summary{cursor:pointer;font-weight:600;color:var(--ink)}
+.lab-help ol{margin:10px 0 0;padding-left:22px}
+@media (max-width:980px){
+  .lab-grid{grid-template-columns:1fr}
+  .lab-main{order:-1}
+}
+@media (max-width:600px){
+  .lab-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lab-chart{height:340px}
+}
+.lab-labelbox{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sage);border-radius:var(--radius);padding:4px 16px 14px}
+.lab-labelbox-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:end}
+.lab-labelbox .lab-range{margin-top:0;min-height:70px}
+.lab-labelbox .lab-radios{min-height:24px}
+@media (max-width:760px){.lab-labelbox-grid{grid-template-columns:1fr}}
+.lab-section{margin-top:0;font-family:var(--serif);font-weight:400;font-size:19px}
