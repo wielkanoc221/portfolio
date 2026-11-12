@@ -1,7 +1,7 @@
 PORTFOLIO — ANDRZEJ PIĘTKA
 
 Struktura:
-  strona/   — index.html, styles.css, app.js
+  strona/   — index.html, analiza-danych.html, styles.css, app.js
   zdjecia/  — wyłącznie zdjęcia i wykresy
 
 1. Otwórz strona/index.html w przeglądarce.
@@ -10,3 +10,9 @@ Struktura:
 ZDJĘCIE PROFILOWE
 Wrzuć swoje zdjęcie jako zdjecia/zdjecie.jpg (najlepiej pionowe, proporcje ok. 4:5).
 Dopóki go nie ma, w jego miejscu wyświetlają się inicjały „AP”.
+
+ZRZUTY EKRANU ACCUR8POOL (opcjonalne — brakujące po prostu się nie wyświetlają)
+  zdjecia/accur8pool-etykietowanie.png  — dashboard do etykietowania
+  zdjecia/accur8pool-predykcje.png      — predykcje modelu XGBoost
+  zdjecia/accur8pool-strona.png         — strona accur8pool.pl
+  zdjecia/accur8pool-3d.png             — wizualizacja 3D ruchu ręki
