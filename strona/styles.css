@@ -31,20 +31,16 @@ button{font:inherit;cursor:pointer}
 .section-head p{color:var(--muted);margin-top:14px}
 
 /* 1. Zdjęcie + 2. O mnie */
-.hero{padding:clamp(48px,8vw,96px) 0}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(32px,6vw,72px);align-items:center}
-.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:linear-gradient(150deg,#dcd5c6,#c9c2b1);box-shadow:0 30px 50px -36px #30291f99}
+.hero{padding:clamp(48px,8vw,88px) 0}
+.hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.portrait{position:relative;width:clamp(170px,22vw,220px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:linear-gradient(150deg,#dcd5c6,#c9c2b1);border:4px solid var(--card);box-shadow:0 24px 44px -30px #30291fa0}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.portrait-fallback{position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:var(--sage-dark)}
-.portrait-fallback strong{font:400 88px/1 var(--serif);letter-spacing:-4px}
-.portrait-fallback span{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;margin-top:14px;opacity:.75}
-.hero h1{font:400 clamp(40px,6.2vw,68px)/1.06 var(--serif);letter-spacing:-2px;margin-top:16px}
-.about{margin-top:22px;max-width:580px;color:var(--muted);font-size:17px}
-.about p+p{margin-top:14px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;padding:0;list-style:none}
-.tags li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--sage-dark)}
-.btn{display:inline-flex;align-items:center;gap:14px;margin-top:30px;background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:6px;text-decoration:none;font-size:14px}
-.btn:hover{background:var(--sage-dark)}
+.portrait-fallback{position:absolute;inset:0;display:grid;place-content:center;color:var(--sage-dark)}
+.portrait-fallback strong{font:400 64px/1 var(--serif);letter-spacing:-3px}
+.hero h1{font:400 clamp(36px,5.4vw,56px)/1.1 var(--serif);letter-spacing:-1.2px;margin-top:28px}
+.role{margin-top:8px;color:var(--sage);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:720px;margin:28px 0 0;padding:0;list-style:none}
+.tags li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--sage-dark)}
 
 /* 3. Podejście */
 .approach{background:var(--paper-2)}
@@ -109,14 +105,11 @@ figcaption{margin-top:12px;font-size:13px;line-height:1.6;color:var(--muted)}
 html.modal-open{overflow:hidden}
 
 @media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr}
-  .portrait{max-width:300px}
 }
 @media (max-width:600px){
   .nav .wrap{min-height:60px}
   .navlinks{gap:0 14px;font-size:12px}
   .navlinks a{min-height:44px;display:inline-flex;align-items:center}
-  .portrait{max-width:220px}
   .cards{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr;max-width:420px}
   .prose{font-size:16px}
