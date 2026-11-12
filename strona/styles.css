@@ -58,14 +58,12 @@ button{font:inherit;cursor:pointer}
 .pillar-num{display:block;font:400 14px/1 var(--serif);color:var(--sage);margin-bottom:10px}
 
 /* 4. Projekty — kafelki */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
 .card:hover{transform:translateY(-4px);box-shadow:0 26px 40px -30px #30291fa0}
 .card-cover{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line)}
 .card-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
 .card:hover .card-cover img{transform:scale(1.04)}
-.cover-code{height:100%;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:22px 26px;background:#2a2c27;color:#d9dccf;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace}
-.cover-code .k{color:#b9c79f}.cover-code .c{color:#8a8f80}
 .card-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
 .card-body .eyebrow{font-size:11px}
 .card-body h3{font:400 25px/1.2 var(--serif);margin-top:8px}
@@ -133,3 +131,8 @@ html.modal-open{overflow:hidden}
   html{scroll-behavior:auto}
   .card,.card-cover img{transition:none}
 }
+
+/* Pionowe zdjęcia na kafelkach — pokazujemy całe, bez przycinania */
+.card-cover.contain{background:#e4ded1}
+.card-cover.contain img{object-fit:contain}
+.card:hover .card-cover.contain img{transform:none}
