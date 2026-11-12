@@ -6,50 +6,414 @@
   <meta name="color-scheme" content="light">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f4f0e7">
-  <title>Andrzej Piętka — od elektroniki do oprogramowania</title>
+  <title>Andrzej Piętka — Python developer</title>
   <meta name="description" content="Portfolio Andrzeja Piętki: od elektroniki i C/C++, przez Pythona i automatyzację, po projekt ML Accur8Pool.">
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <style>
+    :root{
+      --paper:#f4f0e7;--paper-2:#ece6da;--card:#fbf9f4;--ink:#20211f;--muted:#5d6058;
+      --sage:#65705b;--sage-dark:#4b5443;--line:#d6d1c6;
+      --serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      --gutter:clamp(16px,5vw,60px);--radius:10px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans)}
+    h1,h2,h3,p,figure{margin:0}
+    a{color:inherit}
+    img{max-width:100%}
+    button{font:inherit;cursor:pointer}
+    :focus-visible{outline:2px solid var(--sage);outline-offset:4px}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
+    .skip-link{position:absolute;left:16px;top:0;transform:translateY(-120%);z-index:20;background:var(--ink);color:var(--paper);padding:12px 18px}
+    .skip-link:focus{transform:translateY(12px)}
+
+    /* Nawigacja */
+    .nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}
+    .mark{font:32px/1 var(--serif);letter-spacing:-2px;text-decoration:none}
+    .navlinks{display:flex;gap:4px 22px;flex-wrap:wrap;justify-content:flex-end;font-size:13px}
+    .navlinks a{text-decoration:none;padding:10px 0}
+    .navlinks a:hover,.mark:hover{color:var(--sage)}
+
+    .eyebrow{color:var(--sage);font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase}
+    .section{padding:clamp(56px,8vw,96px) 0;border-bottom:1px solid var(--line);scroll-margin-top:68px}
+    .section-head{max-width:640px;margin-bottom:40px}
+    .section-head h2{font:400 clamp(32px,4.6vw,46px)/1.12 var(--serif);letter-spacing:-.8px;margin-top:12px}
+    .section-head p{color:var(--muted);margin-top:14px}
+
+    /* 1. Zdjęcie + 2. O mnie */
+    .hero{padding:clamp(48px,8vw,96px) 0}
+    .hero .wrap{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(32px,6vw,72px);align-items:center}
+    .portrait{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:linear-gradient(150deg,#dcd5c6,#c9c2b1);box-shadow:0 30px 50px -36px #30291f99}
+    .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .portrait-fallback{position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:var(--sage-dark)}
+    .portrait-fallback strong{font:400 88px/1 var(--serif);letter-spacing:-4px}
+    .portrait-fallback span{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;margin-top:14px;opacity:.75}
+    .hero h1{font:400 clamp(40px,6.2vw,68px)/1.06 var(--serif);letter-spacing:-2px;margin-top:16px}
+    .about{margin-top:22px;max-width:580px;color:var(--muted);font-size:17px}
+    .about p+p{margin-top:14px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;padding:0;list-style:none}
+    .tags li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--sage-dark)}
+    .btn{display:inline-flex;align-items:center;gap:14px;margin-top:30px;background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:6px;text-decoration:none;font-size:14px}
+    .btn:hover{background:var(--sage-dark)}
+
+    /* 3. Podejście */
+    .approach{background:var(--paper-2)}
+    .approach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+    .pillar{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+    .pillar h3{font:400 24px/1.2 var(--serif);margin-bottom:18px}
+    .pillar ul{list-style:none;margin:0;padding:0}
+    .pillar li+li{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+    .pillar li strong{display:block;font-weight:600;font-size:15px}
+    .pillar li span{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+    .pillar-num{display:block;font:400 14px/1 var(--serif);color:var(--sage);margin-bottom:10px}
+
+    /* 4. Projekty — kafelki */
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+    .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 26px 40px -30px #30291fa0}
+    .card-cover{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line)}
+    .card-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+    .card:hover .card-cover img{transform:scale(1.04)}
+    .cover-code{height:100%;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:22px 26px;background:#2a2c27;color:#d9dccf;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace}
+    .cover-code .k{color:#b9c79f}.cover-code .c{color:#8a8f80}
+    .card-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+    .card-body .eyebrow{font-size:11px}
+    .card-body h3{font:400 25px/1.2 var(--serif);margin-top:8px}
+    .card-body p{color:var(--muted);font-size:14px;margin-top:8px;flex:1}
+    .card-more{margin-top:18px;font-size:13px;color:var(--sage-dark);font-weight:600}
+    .card:hover .card-more{text-decoration:underline}
+
+    /* Widok szczegółów projektu */
+    .project{padding:clamp(40px,6vw,72px) 0 clamp(56px,8vw,96px);border-bottom:1px solid var(--line);scroll-margin-top:68px}
+    .back{display:inline-flex;align-items:center;gap:8px;font-size:14px;text-decoration:none;color:var(--sage-dark);padding:10px 0}
+    .back:hover{text-decoration:underline}
+    .project-head{max-width:720px;margin:20px auto 36px}
+    .project-head h2{font:400 clamp(34px,5.4vw,56px)/1.08 var(--serif);letter-spacing:-1.2px;margin-top:12px}
+    .project-head p:not(.eyebrow){color:var(--muted);margin-top:14px;font-size:17px}
+    .prose{max-width:720px;margin:0 auto;color:#3d4038;font-size:17px;line-height:1.8}
+    .prose p+p{margin-top:20px}
+    .prose ul{padding-left:23px;margin:12px 0 23px}
+    .prose li{margin-bottom:7px}
+    .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:28px;margin:36px auto;max-width:860px}
+    .gallery.narrow{max-width:720px}
+    .figure-wide{max-width:960px;margin:36px auto}
+    .figure-small{max-width:545px;margin:36px auto}
+    .photo-open{display:block;width:100%;padding:0;border:0;border-radius:6px;background:transparent;box-shadow:0 20px 32px -26px #403a2c80;cursor:zoom-in;overflow:hidden}
+    .photo-open img{display:block;width:100%;height:auto}
+    .rotated{display:block;position:relative;overflow:hidden}
+    .rotated img{position:absolute;left:50%;top:50%;width:var(--photo-width);height:auto;max-width:none;transform:translate(-50%,-50%) rotate(90deg)}
+    figcaption{margin-top:12px;font-size:13px;line-height:1.6;color:var(--muted)}
+    .next-project{max-width:720px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    /* Tryb z JS: pokazujemy albo stronę główną, albo jeden projekt */
+    .js .project{display:none}
+    .js body.view-project .home{display:none}
+    .js .project.is-active{display:block}
+
+    .footer{padding:28px 0 36px;font-size:13px;color:var(--muted)}
+    .footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    /* Powiększenie zdjęć */
+    .dialog{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--paper);color:var(--ink);max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto;box-shadow:0 25px 90px #0004}
+    .dialog::backdrop{background:#171914d9}
+    .dialog form{display:flex;justify-content:flex-end;margin:0 0 12px}
+    .dialog-close{border:1px solid #c2c5b7;border-radius:4px;min-height:44px;background:var(--paper);color:var(--ink);padding:8px 15px}
+    .dialog-stage{display:flex;justify-content:center}
+    .dialog-box{position:relative;overflow:hidden}
+    #dialog-image{position:absolute;top:50%;left:50%;max-width:none}
+    #dialog-caption{font-size:14px;text-align:center;margin:14px auto 0;max-width:700px}
+    html.modal-open{overflow:hidden}
+
+    @media (max-width:860px){
+      .approach-grid{grid-template-columns:1fr}
+      .hero .wrap{grid-template-columns:1fr}
+      .portrait{max-width:300px}
+    }
+    @media (max-width:600px){
+      .nav .wrap{min-height:60px}
+      .navlinks{gap:0 14px;font-size:12px}
+      .navlinks a{min-height:44px;display:inline-flex;align-items:center}
+      .portrait{max-width:220px}
+      .cards{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr;max-width:420px}
+      .prose{font-size:16px}
+      .pillar{padding:22px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .card,.card-cover img{transition:none}
+    }
+  </style>
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<a class="skip-link" href="#apc-poczatki">Przejdź do projektów</a>
-<div id="ap-portfolio-chronologia" lang="pl">
-<header class="ap-nav ap-pad"><a class="ap-mark" href="#apc-start" aria-label="Andrzej Piętka — początek strony">AP.</a><nav class="ap-navlinks" aria-label="Etapy rozwoju w kolejności chronologicznej"><a href="#apc-poczatki">Początki</a><a href="#apc-gry">Gry</a><a href="#apc-cpp">Ukulele</a><a href="#apc-python">Python</a><a href="#apc-ml">Accur8Pool</a></nav></header>
-<section class="ap-hero ap-pad" id="apc-start"><p class="ap-eyebrow">Andrzej Piętka / Python developer</p><h1>Od elektroniki<br>do oprogramowania.</h1><div class="ap-intro"><p data-source-p="0">Przygodę z programowaniem rozpoczynałem w trakcie nauki w technikum elektronicznym, gdzie zaciekawił mnie potencjał mikroprocesorów, które pozwalały tworzyć nieograniczoną ilość sprzętu, gadżetów oraz własnych projektów.</p></div><a class="ap-jump" href="#apc-poczatki">Poznaj moją drogę <span aria-hidden="true">↓</span></a></section>
-<section class="ap-chapter ap-pad" id="apc-poczatki" aria-labelledby="apc-poczatki-title">
- <div class="ap-chapterline"><p class="ap-eyebrow">01 / Technikum i pierwsze konstrukcje</p></div>
- <details class="ap-project">
-  <summary class="ap-project-summary"><div class="ap-summary-copy"><h2 id="apc-poczatki-title" data-source-p="1">DYSPENSER DO NAPOJÓW</h2><span class="ap-teaser">Drewniany szkielet, własna elektronika i program sterujący.</span></div><span class="ap-toggle"><span class="ap-more">Rozwiń projekt</span><span class="ap-less">Zwiń projekt</span></span></summary>
-  <div class="ap-project-content"><div class="ap-prose"><p data-source-p="2">Moim pierwszym projektem było stworzenie automatycznego dyspensera do napojów. Pomysł był prosty. Zbudować drewniany szkielet, zaprojektować elektronikę oraz odpowiednio zaprogramować kontroler.</p></div><div class="ap-photo-gallery ap-dispenser-gallery"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/dyspenser-konstrukcja.jpg" data-rotation="90" aria-label="Powiększ: Budowa obudowy dyspensera"><span class="ap-rotated" style="aspect-ratio:777/1381;--photo-width:177.7348777%"><img src="assets/dyspenser-konstrukcja.jpg" alt="Budowa obudowy dyspensera" width="1381" height="777" loading="lazy" decoding="async" data-source-image="1"></span></button><figcaption class="ap-caption" >Budowa obudowy dyspensera</figcaption></figure><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/dyspenser-obudowa.jpg" data-rotation="90" aria-label="Powiększ: Obudowa po wykończeniu"><span class="ap-rotated" style="aspect-ratio:620/1101;--photo-width:177.5806452%"><img src="assets/dyspenser-obudowa.jpg" alt="Obudowa po wykończeniu" width="1101" height="620" loading="lazy" decoding="async" data-source-image="2"></span></button><figcaption class="ap-caption" >Obudowa po wykończeniu</figcaption></figure><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/dyspenser-gotowy.jpg" data-rotation="0" aria-label="Powiększ: Gotowy dyspenser do napojów"><span class="ap-image-surface"><img src="assets/dyspenser-gotowy.jpg" alt="Gotowy dyspenser do napojów" width="1836" height="3264" loading="lazy" decoding="async" data-source-image="3"></span></button><figcaption class="ap-caption" >Gotowy dyspenser do napojów</figcaption></figure><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/dyspenser-elektronika.jpg" data-rotation="0" aria-label="Powiększ: Elektronika wewnątrz obudowy"><span class="ap-image-surface"><img src="assets/dyspenser-elektronika.jpg" alt="Elektronika wewnątrz obudowy" width="1836" height="3264" loading="lazy" decoding="async" data-source-image="4"></span></button><figcaption class="ap-caption" >Elektronika wewnątrz obudowy</figcaption></figure></div></div>
- </details>
-</section>
-<section class="ap-chapter ap-pad" id="apc-gry" aria-labelledby="apc-gry-title">
- <div class="ap-chapterline"><p class="ap-eyebrow">02 / Programowanie mikrokontrolerów</p></div>
- <details class="ap-project">
-  <summary class="ap-project-summary"><div class="ap-summary-copy"><h2 id="apc-gry-title" >Proste gry na wyświetlaczach.</h2><span class="ap-teaser">Kolejne projekty w C/C++ i pierwsza styczność z programowaniem obiektowym.</span></div><span class="ap-toggle"><span class="ap-more">Rozwiń projekt</span><span class="ap-less">Zwiń projekt</span></span></summary>
-  <div class="ap-project-content"><div class="ap-prose"><p data-source-p="4">Przez następne 3 lata rozwijałem umiejętności w kierunku programowania mikrokontrolerów oraz języka C/C++. Kolejne projekty przedstawiały proste gry z wykorzystaniem wyświetlaczy OLED. Pomysł nie był rewolucyjny, ale był niezbędną ścieżką nauki pełnej architektury procesora i sposobu działania rejestrów. Była to też pierwsza styczność z programowaniem obiektowym.</p></div><div class="ap-photo-gallery ap-games-gallery"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/gra-lcd.png" data-rotation="0" aria-label="Powiększ: Prosta gra na wyświetlaczu LCD"><span class="ap-image-surface"><img src="assets/gra-lcd.png" alt="Prosta gra na wyświetlaczu LCD" width="537" height="723" loading="lazy" decoding="async" data-source-image="5"></span></button><figcaption class="ap-caption" >Prosta gra na wyświetlaczu LCD</figcaption></figure><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/gra-oled.png" data-rotation="0" aria-label="Powiększ: Gra na wyświetlaczu OLED"><span class="ap-image-surface"><img src="assets/gra-oled.png" alt="Gra na wyświetlaczu OLED" width="534" height="716" loading="lazy" decoding="async" data-source-image="6"></span></button><figcaption class="ap-caption" >Gra na wyświetlaczu OLED</figcaption></figure></div></div>
- </details>
-</section>
-<section class="ap-chapter ap-pad" id="apc-cpp" aria-labelledby="apc-cpp-title">
- <div class="ap-chapterline"><p class="ap-eyebrow">03 / Ostatni projekt oparty na mikrokontrolerach</p></div>
- <details class="ap-project">
-  <summary class="ap-project-summary"><div class="ap-summary-copy"><h2 id="apc-cpp-title" >Robot grający na ukulele.</h2><span class="ap-teaser">Serwomechanizmy, rejestry przesuwne i stabilny sygnał PWM.</span></div><span class="ap-toggle"><span class="ap-more">Rozwiń projekt</span><span class="ap-less">Zwiń projekt</span></span></summary>
-  <div class="ap-project-content"><div class="ap-prose"><p data-source-p="7">Ostatnim projektem opartym na mikrokontrolerach, jaki stworzyłem, było zbudowanie robota grającego na ukulele. Największym wyzwaniem, przed jakim stałem, było programowe generowanie sygnału PWM do sterowania serwomechanizmami. Sterowanie odbywało się za pomocą rejestrów przesuwnych, co wymagało dbania o synchroniczne załączanie i wyłączanie odpowiednich wyprowadzeń. Uznałem, że gotowe układy scalone będą zbyt prostą drogą i musiałem rzucić sobie kilka kłód pod nogi, żeby móc je przeskoczyć 😊.</p><p data-source-p="8">Problemy pojawiły się ze stabilnością zegarów taktujących, co całkowicie rozjeżdżało synchronizację sygnału PWM. Skutkowało to drganiami serwomechanizmów w momencie, kiedy powinny stać nieruchomo. Z pomocą przyszło odrzucenie zaleceń z noty katalogowej producenta i zastosowanie zegara o wyższych parametrach, niż przewidywano. Okazało się to rozwiązaniem problemów i od tego momentu oscyloskop pokazywał to, co chciałem zobaczyć. Stabilny sygnał.</p><p data-source-p="9">Finalnie wystarczyło napisać program, który przyjmował pliki z zapisanymi akordami, aby serwomechanizmy grały w zaplanowany sposób. Niestety gitarzysty ten robot nie pozbawił pracy, ponieważ miał kilka wad konstrukcyjnych, przez co nie do końca czysto grał.</p></div><div class="ap-ukulele-gallery"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/ukulele-konstrukcja.png" data-rotation="0" aria-label="Powiększ: Robot grający na ukulele — cała konstrukcja"><span class="ap-image-surface"><img src="assets/ukulele-konstrukcja.png" alt="Robot grający na ukulele — cała konstrukcja" width="1220" height="624" loading="lazy" decoding="async" data-source-image="9"></span></button><figcaption class="ap-caption" >Robot grający na ukulele — cała konstrukcja</figcaption></figure><div class="ap-photo-gallery"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/ukulele-sterownik.jpg" data-rotation="0" aria-label="Powiększ: Własna płytka sterownika"><span class="ap-image-surface"><img src="assets/ukulele-sterownik.jpg" alt="Własna płytka sterownika" width="1382" height="809" loading="lazy" decoding="async" data-source-image="7"></span></button><figcaption class="ap-caption" >Własna płytka sterownika</figcaption></figure><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/ukulele-serwomechanizmy.png" data-rotation="0" aria-label="Powiększ: Serwomechanizmy przy strunach ukulele"><span class="ap-image-surface"><img src="assets/ukulele-serwomechanizmy.png" alt="Serwomechanizmy przy strunach ukulele" width="1205" height="624" loading="lazy" decoding="async" data-source-image="8"></span></button><figcaption class="ap-caption" >Serwomechanizmy przy strunach ukulele</figcaption></figure></div></div></div>
- </details>
-</section>
-<section class="ap-chapter ap-pad" id="apc-python" aria-labelledby="apc-python-title">
- <div class="ap-chapterline"><p class="ap-eyebrow">04 / Przejście na Pythona</p></div>
- <details class="ap-project">
-  <summary class="ap-project-summary"><div class="ap-summary-copy"><h2 id="apc-python-title" >Od nauki do pracy zawodowej.</h2><span class="ap-teaser">Trzy lata nauki, własnych decyzji i rozwijania rozwiązań.</span></div><span class="ap-toggle"><span class="ap-more">Rozwiń projekt</span><span class="ap-less">Zwiń projekt</span></span></summary>
-  <div class="ap-project-content"><div class="ap-prose"><p data-source-p="12">Tutaj nastąpił moment przejścia na Pythona. Kolega zaciekawił mnie tym językiem. Chociaż zmiana języka programowania nigdy nie jest przyjemna, zdecydowałem się zostawić za sobą dotychczasową pracę z C++ i elektroniką. Pierwszą pracę zawodową z Pythonem zdobyłem po 3 miesiącach nauki tego języka. Woda na początku była bardzo głęboka. Przede wszystkim nie zdawałem sobie sprawy, jak dużo jeszcze nie wiem.</p><p data-source-p="13">Moje zadania opierały się na automatyzacji procesu uruchamiania wyprodukowanej elektroniki. Miałem pełną swobodę w wymyślaniu i wdrażaniu rozwiązań. Dało mi to dużo przestrzeni do nauki i dopracowywania własnych pomysłów. Pierwszy rok był ogromnym krokiem naprzód w dziedzinie programowania. Czytałem literaturę, przechodziłem kursy i wdrażałem nową wiedzę do pisanego kodu.</p><p data-source-p="14">Kolejny rok był etapem rozwoju intuicji programistycznej i odczuwania na własnej skórze skutków błędnych decyzji. To pozwoliło mi wypróbować w boju książkowe rozwiązania. Uświadomiłem sobie, że nie można podchodzić ortodoksyjnie do programowania. Pomimo że istnieją zasady i podejścia pomagające tworzyć kod, takie jak SOLID, wzorce projektowe czy OOP, nie można kurczowo się ich trzymać.</p><p data-source-p="15">Trzeci rok opierał się na myśleniu nie tylko o tym, jak napisać program, ale też jak zaplanować rozwiązanie na wyższym poziomie. Doszło przesyłanie wyników na serwer, tworzenie API łączącego moje serwisy z innymi programami oraz dbanie o niezawodność i ciągłość ich pracy.</p></div></div>
- </details>
-</section>
-<section class="ap-chapter ap-pad" id="apc-ml" aria-labelledby="apc-ml-title">
- <div class="ap-chapterline"><p class="ap-eyebrow">05 / Machine learning i własne dane</p></div>
- <details class="ap-project">
-  <summary class="ap-project-summary"><div class="ap-summary-copy"><h2 id="apc-ml-title" >Accur8Pool.</h2><span class="ap-teaser">Pomysł na analizę techniki uderzenia gracza w bilardzie.</span></div><span class="ap-toggle"><span class="ap-more">Rozwiń projekt</span><span class="ap-less">Zwiń projekt</span></span></summary>
-  <div class="ap-project-content"><div class="ap-prose"><p data-source-p="16">W międzyczasie przez rok po godzinach pogłębiałem swoją wiedzę o ML i AI, dokładnie studiując matematykę oraz rozwiązania stojące za tymi tematami. Niestety nauka „na sucho” w tych dziedzinach jest trudna. Trafiałem na dużo sztucznie wygenerowanych danych w internecie albo na dane, których tematyka po prostu mnie nie interesowała. Ciężko było poświęcić kilka tygodni na analizę i dogłębne zrozumienie danych, kiedy nie widziałem praktycznego zastosowania takiej pracy.</p><p data-source-p="17">Tutaj zrodził się pomysł stworzenia projektu bilardowego. Koncepcja była prosta. Projekt miał korygować technikę uderzenia gracza w bilardzie. Dane miały być odczytywane z sensorów zegarka i przetwarzane przez model XGBoost, wcześniej wytrenowany na oznaczonych danych.</p><p data-source-p="18">Początkowo projekt miał zawierać jedynie:</p><ul><li data-source-p="19">program na zegarek zbierający pełen zestaw danych z sensorów,</li><li data-source-p="20">dashboard do etykietowania danych,</li><li data-source-p="21">moduły do transformacji danych,</li><li data-source-p="22">moduły do wizualizacji danych na wykresach,</li><li data-source-p="23">pipeline do uczenia modelu XGBoost.</li></ul><p data-source-p="24">Projekt rozrósł się o:</p><ul><li data-source-p="25">stronę internetową accur8pool.pl w Django,</li><li data-source-p="26">aplikację na telefon do zarządzania danymi z zegarka i przesyłania ich na serwer.</li></ul><p data-source-p="27">Musiałem rozpocząć cały projekt od prawidłowego przygotowania danych, tak aby były czytelne dla człowieka. Na tym etapie nie wiedziałem jeszcze, czy ten pomysł będzie w ogóle możliwy do wykonania. Dwa miesiące zajęło mi studiowanie matematyki niezbędnej do prawidłowej transformacji danych, tak aby można było przedstawić je na wykresach i zrozumieć, co właściwie pokazują.</p></div><div class="ap-raw-figure"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/accur8pool-surowe-dane.png" data-rotation="0" aria-label="Powiększ: Surowe dane, nieczytelny wykres dla człowieka. Wygląda jak szum."><span class="ap-image-surface"><img src="assets/accur8pool-surowe-dane.png" alt="Surowe dane, nieczytelny wykres dla człowieka. Wygląda jak szum." width="545" height="557" loading="lazy" decoding="async" data-source-image="10"></span></button><figcaption class="ap-caption" data-source-p="28">Surowe dane, nieczytelny wykres dla człowieka. Wygląda jak szum.</figcaption></figure></div><div class="ap-prose"><p data-source-p="29">Tutaj przełomowe było to, że po pełnej transformacji danych widać na wykresie dokładnie, kiedy występowało uderzenie bilardowe względem reszty nagrania. Dodatkowo samo uderzenie można było podzielić na cztery segmenty:</p><p data-source-p="30">Przygotowanie do pozycji uderzenia, przymierzenie, uderzenie, okres po uderzeniu.</p></div><div class="ap-processed-figure"><figure class="ap-original-photo"><button type="button" class="ap-image-open" data-full-image="assets/accur8pool-wykres.png" data-rotation="0" aria-label="Powiększ: Dodatkowo na wykresie można było zobaczyć, jak czyste i poprawne było uderzenie."><span class="ap-image-surface"><img src="assets/accur8pool-wykres.png" alt="Dodatkowo na wykresie można było zobaczyć, jak czyste i poprawne było uderzenie." width="1239" height="670" loading="lazy" decoding="async" data-source-image="11"></span></button><figcaption class="ap-caption" data-source-p="31">Dodatkowo na wykresie można było zobaczyć, jak czyste i poprawne było uderzenie.</figcaption></figure></div><div class="ap-prose"><p data-source-p="33">Na dashboardzie można zobaczyć żółty wykres reprezentujący całkowity obrót zegarka, „roll”. Obliczałem go za pomocą arcusa tangensa z przyspieszenia w osiach Y oraz Z, a następnie obliczałem z tego całkę. I to właśnie ta pozycja wskazywała na pozycję uderzającą. W oscylacji na zielonym wykresie „gyr_z” widać moment ruchu kija w przód i w tył. Na niebieskim wykresie pik zaznaczony na czerwonym tle pokazuje moment uderzenia kijem w bilę.</p><p data-source-p="34">Na tym etapie wiedziałem, że dalsza praca nad projektem ma sens.</p><p data-source-p="35">Została stworzona strona internetowa accur8pool.pl (na ten moment serwer jest nieczynny), aby otworzyć pomysł na świat i zachęcić innych ludzi do zbierania danych do późniejszego uczenia modeli.</p><p data-source-p="36">Ten projekt realizowałem przez 11 miesięcy i dalej nie został w pełni zakończony.</p></div></div>
- </details>
-</section><footer class="ap-footer ap-pad"><span>Andrzej Piętka</span><span>Elektronika → C/C++ → Python → Machine Learning</span></footer>
-<dialog class="ap-image-dialog" id="ap-image-dialog" aria-labelledby="ap-image-caption"><form method="dialog"><button class="ap-dialog-close" aria-label="Zamknij powiększenie">Zamknij ×</button></form><div class="ap-dialog-stage"><div class="ap-dialog-image-box"><img id="ap-dialog-image" alt=""></div></div><p id="ap-image-caption"></p></dialog>
-</div></body></html>
+<a class="skip-link" href="#projekty">Przejdź do projektów</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#start" aria-label="Andrzej Piętka — początek strony">AP.</a>
+    <nav class="navlinks" aria-label="Sekcje strony">
+      <a href="#o-mnie">O mnie</a>
+      <a href="#podejscie">Podejście</a>
+      <a href="#projekty">Projekty</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="home">
+
+  <!-- 1. Zdjęcie + 2. Krótki opis -->
+  <section class="hero" id="start">
+    <div class="wrap" id="o-mnie">
+      <div class="portrait">
+        <div class="portrait-fallback" aria-hidden="true"><strong>AP</strong><span>Zdjęcie wkrótce</span></div>
+        <!-- Wrzuć swoje zdjęcie jako assets/zdjecie.jpg — pojawi się tutaj automatycznie. -->
+        <img src="assets/zdjecie.jpg" alt="Andrzej Piętka" onerror="this.remove()">
+      </div>
+      <div>
+        <p class="eyebrow">Andrzej Piętka / Python developer</p>
+        <h1>Od elektroniki<br>do oprogramowania.</h1>
+        <div class="about">
+          <p>Programowanie zacząłem w technikum elektronicznym — od mikrokontrolerów, C/C++ i własnoręcznie lutowanych płytek. Od kilku lat pracuję zawodowo w Pythonie: automatyzuję uruchamianie wyprodukowanej elektroniki, buduję API i dbam o to, żeby moje serwisy działały niezawodnie.</p>
+          <p>Po godzinach zajmuję się uczeniem maszynowym na własnych danych — tak powstał Accur8Pool, projekt analizujący technikę uderzenia w bilardzie.</p>
+        </div>
+        <ul class="tags" aria-label="Technologie">
+          <li>Python</li><li>Django</li><li>API</li><li>XGBoost</li><li>C/C++</li><li>Mikrokontrolery</li>
+        </ul>
+        <a class="btn" href="#projekty">Zobacz projekty <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Podejście, mocne strony, zasady -->
+  <section class="section approach" id="podejscie">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Jak pracuję</p>
+        <h2>Podejście do programowania.</h2>
+        <p>Kilka rzeczy, których nauczyły mnie lata budowania sprzętu, pisania kodu i ponoszenia konsekwencji własnych decyzji.</p>
+      </div>
+      <div class="approach-grid">
+        <article class="pillar">
+          <span class="pillar-num">01</span>
+          <h3>Podejście</h3>
+          <ul>
+            <li><strong>Najpierw zrozumieć problem</strong><span>Zanim powstał model w Accur8Pool, przez dwa miesiące studiowałem matematykę, żeby dane były czytelne dla człowieka.</span></li>
+            <li><strong>Uczę się przez budowanie</strong><span>Wiedza z książek i kursów od razu trafia do realnego kodu — tam najszybciej widać, co działa.</span></li>
+            <li><strong>Myślę o całym systemie</strong><span>Nie tylko jak napisać program, ale jak zaplanować rozwiązanie: przesyłanie danych, API, ciągłość działania.</span></li>
+          </ul>
+        </article>
+        <article class="pillar">
+          <span class="pillar-num">02</span>
+          <h3>Mocne strony</h3>
+          <ul>
+            <li><strong>Od sprzętu do serwera</strong><span>Rozumiem całą drogę: rejestry procesora, sensory, aplikację, backend i model ML.</span></li>
+            <li><strong>Samodzielność</strong><span>W pracy dostałem pełną swobodę w projektowaniu i wdrażaniu rozwiązań — i z niej korzystam.</span></li>
+            <li><strong>Wytrwałość w debugowaniu</strong><span>Potrafię zejść do oscyloskopu i noty katalogowej, a czasem świadomie ją podważyć, żeby znaleźć przyczynę.</span></li>
+          </ul>
+        </article>
+        <article class="pillar">
+          <span class="pillar-num">03</span>
+          <h3>Zasady</h3>
+          <ul>
+            <li><strong>Pragmatyzm ponad dogmaty</strong><span>SOLID, wzorce projektowe i OOP to narzędzia, a nie religia. Stosuję je tam, gdzie pomagają.</span></li>
+            <li><strong>Niezawodność to funkcja</strong><span>Kod, który działa w produkcji dzień po dniu, jest wart więcej niż kod sprytny.</span></li>
+            <li><strong>Błędy są lekcją</strong><span>Skutki złych decyzji odczuwam na własnej skórze — i wyciągam z nich wnioski na następny projekt.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Projekty jako kafelki -->
+  <section class="section" id="projekty">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Wybrane prace</p>
+        <h2>Projekty.</h2>
+        <p>Kliknij kafelek, żeby przeczytać pełny opis projektu.</p>
+      </div>
+      <div class="cards">
+        <a class="card" href="#accur8pool">
+          <div class="card-cover"><img src="assets/accur8pool-wykres.png" alt="" loading="lazy"></div>
+          <div class="card-body"><p class="eyebrow">Machine learning · Django</p><h3>Accur8Pool</h3><p>Analiza techniki uderzenia w bilardzie na podstawie sensorów zegarka i modelu XGBoost.</p><span class="card-more">Czytaj opis →</span></div>
+        </a>
+        <a class="card" href="#python">
+          <div class="card-cover"><div class="cover-code" aria-hidden="true"><span class="c"># automatyzacja testów elektroniki</span><span><span class="k">def</span> run_station(board):</span><span>&nbsp;&nbsp;&nbsp;&nbsp;result = flash_and_test(board)</span><span>&nbsp;&nbsp;&nbsp;&nbsp;api.upload(result)</span></div></div>
+          <div class="card-body"><p class="eyebrow">Python · praca zawodowa</p><h3>Od nauki do pracy zawodowej</h3><p>Trzy lata automatyzacji uruchamiania elektroniki, API i niezawodnych serwisów.</p><span class="card-more">Czytaj opis →</span></div>
+        </a>
+        <a class="card" href="#ukulele">
+          <div class="card-cover"><img src="assets/ukulele-konstrukcja.png" alt="" loading="lazy"></div>
+          <div class="card-body"><p class="eyebrow">Mikrokontrolery · PWM</p><h3>Robot grający na ukulele</h3><p>Serwomechanizmy, rejestry przesuwne i programowo generowany sygnał PWM.</p><span class="card-more">Czytaj opis →</span></div>
+        </a>
+        <a class="card" href="#gry">
+          <div class="card-cover"><img src="assets/gra-oled.png" alt="" loading="lazy"></div>
+          <div class="card-body"><p class="eyebrow">C/C++ · wyświetlacze</p><h3>Gry na wyświetlaczach</h3><p>Proste gry na LCD i OLED — nauka architektury procesora i pierwsze OOP.</p><span class="card-more">Czytaj opis →</span></div>
+        </a>
+        <a class="card" href="#dyspenser">
+          <div class="card-cover"><img src="assets/dyspenser-gotowy.jpg" alt="" loading="lazy"></div>
+          <div class="card-body"><p class="eyebrow">Elektronika · technikum</p><h3>Dyspenser do napojów</h3><p>Pierwszy projekt: drewniany szkielet, własna elektronika i program sterujący.</p><span class="card-more">Czytaj opis →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Szczegóły projektów -->
+<article class="project" id="accur8pool" aria-labelledby="accur8pool-title">
+  <div class="wrap">
+    <a class="back" href="#projekty">← Wszystkie projekty</a>
+    <header class="project-head"><p class="eyebrow">Machine learning i własne dane</p><h2 id="accur8pool-title">Accur8Pool.</h2><p>Pomysł na analizę techniki uderzenia gracza w bilardzie.</p></header>
+    <div class="prose">
+      <p>W międzyczasie przez rok po godzinach pogłębiałem swoją wiedzę o ML i AI, dokładnie studiując matematykę oraz rozwiązania stojące za tymi tematami. Niestety nauka „na sucho” w tych dziedzinach jest trudna. Trafiałem na dużo sztucznie wygenerowanych danych w internecie albo na dane, których tematyka po prostu mnie nie interesowała. Ciężko było poświęcić kilka tygodni na analizę i dogłębne zrozumienie danych, kiedy nie widziałem praktycznego zastosowania takiej pracy.</p>
+      <p>Tutaj zrodził się pomysł stworzenia projektu bilardowego. Koncepcja była prosta. Projekt miał korygować technikę uderzenia gracza w bilardzie. Dane miały być odczytywane z sensorów zegarka i przetwarzane przez model XGBoost, wcześniej wytrenowany na oznaczonych danych.</p>
+      <p>Początkowo projekt miał zawierać jedynie:</p>
+      <ul><li>program na zegarek zbierający pełen zestaw danych z sensorów,</li><li>dashboard do etykietowania danych,</li><li>moduły do transformacji danych,</li><li>moduły do wizualizacji danych na wykresach,</li><li>pipeline do uczenia modelu XGBoost.</li></ul>
+      <p>Projekt rozrósł się o:</p>
+      <ul><li>stronę internetową accur8pool.pl w Django,</li><li>aplikację na telefon do zarządzania danymi z zegarka i przesyłania ich na serwer.</li></ul>
+      <p>Musiałem rozpocząć cały projekt od prawidłowego przygotowania danych, tak aby były czytelne dla człowieka. Na tym etapie nie wiedziałem jeszcze, czy ten pomysł będzie w ogóle możliwy do wykonania. Dwa miesiące zajęło mi studiowanie matematyki niezbędnej do prawidłowej transformacji danych, tak aby można było przedstawić je na wykresach i zrozumieć, co właściwie pokazują.</p>
+    </div>
+    <figure class="figure-small"><button type="button" class="photo-open" data-full-image="assets/accur8pool-surowe-dane.png" aria-label="Powiększ zdjęcie"><img src="assets/accur8pool-surowe-dane.png" alt="Surowe dane z sensorów — wykres wyglądający jak szum" width="545" height="557" loading="lazy"></button><figcaption>Surowe dane, nieczytelny wykres dla człowieka. Wygląda jak szum.</figcaption></figure>
+    <div class="prose">
+      <p>Tutaj przełomowe było to, że po pełnej transformacji danych widać na wykresie dokładnie, kiedy występowało uderzenie bilardowe względem reszty nagrania. Dodatkowo samo uderzenie można było podzielić na cztery segmenty:</p>
+      <p>Przygotowanie do pozycji uderzenia, przymierzenie, uderzenie, okres po uderzeniu.</p>
+    </div>
+    <figure class="figure-wide"><button type="button" class="photo-open" data-full-image="assets/accur8pool-wykres.png" aria-label="Powiększ zdjęcie"><img src="assets/accur8pool-wykres.png" alt="Dashboard z przetworzonymi danymi uderzenia" width="1239" height="670" loading="lazy"></button><figcaption>Dodatkowo na wykresie można było zobaczyć, jak czyste i poprawne było uderzenie.</figcaption></figure>
+    <div class="prose">
+      <p>Na dashboardzie można zobaczyć żółty wykres reprezentujący całkowity obrót zegarka, „roll”. Obliczałem go za pomocą arcusa tangensa z przyspieszenia w osiach Y oraz Z, a następnie obliczałem z tego całkę. I to właśnie ta pozycja wskazywała na pozycję uderzającą. W oscylacji na zielonym wykresie „gyr_z” widać moment ruchu kija w przód i w tył. Na niebieskim wykresie pik zaznaczony na czerwonym tle pokazuje moment uderzenia kijem w bilę.</p>
+      <p>Na tym etapie wiedziałem, że dalsza praca nad projektem ma sens.</p>
+      <p>Została stworzona strona internetowa accur8pool.pl (na ten moment serwer jest nieczynny), aby otworzyć pomysł na świat i zachęcić innych ludzi do zbierania danych do późniejszego uczenia modeli.</p>
+      <p>Ten projekt realizowałem przez 11 miesięcy i dalej nie został w pełni zakończony.</p>
+    </div>
+    <nav class="next-project" aria-label="Nawigacja między projektami"><a class="back" href="#projekty">← Wszystkie projekty</a><a class="back" href="#python">Następny: Praca zawodowa →</a></nav>
+  </div>
+</article>
+
+<article class="project" id="python" aria-labelledby="python-title">
+  <div class="wrap">
+    <a class="back" href="#projekty">← Wszystkie projekty</a>
+    <header class="project-head"><p class="eyebrow">Przejście na Pythona</p><h2 id="python-title">Od nauki do pracy zawodowej.</h2><p>Trzy lata nauki, własnych decyzji i rozwijania rozwiązań.</p></header>
+    <div class="prose">
+      <p>Tutaj nastąpił moment przejścia na Pythona. Kolega zaciekawił mnie tym językiem. Chociaż zmiana języka programowania nigdy nie jest przyjemna, zdecydowałem się zostawić za sobą dotychczasową pracę z C++ i elektroniką. Pierwszą pracę zawodową z Pythonem zdobyłem po 3 miesiącach nauki tego języka. Woda na początku była bardzo głęboka. Przede wszystkim nie zdawałem sobie sprawy, jak dużo jeszcze nie wiem.</p>
+      <p>Moje zadania opierały się na automatyzacji procesu uruchamiania wyprodukowanej elektroniki. Miałem pełną swobodę w wymyślaniu i wdrażaniu rozwiązań. Dało mi to dużo przestrzeni do nauki i dopracowywania własnych pomysłów. Pierwszy rok był ogromnym krokiem naprzód w dziedzinie programowania. Czytałem literaturę, przechodziłem kursy i wdrażałem nową wiedzę do pisanego kodu.</p>
+      <p>Kolejny rok był etapem rozwoju intuicji programistycznej i odczuwania na własnej skórze skutków błędnych decyzji. To pozwoliło mi wypróbować w boju książkowe rozwiązania. Uświadomiłem sobie, że nie można podchodzić ortodoksyjnie do programowania. Pomimo że istnieją zasady i podejścia pomagające tworzyć kod, takie jak SOLID, wzorce projektowe czy OOP, nie można kurczowo się ich trzymać.</p>
+      <p>Trzeci rok opierał się na myśleniu nie tylko o tym, jak napisać program, ale też jak zaplanować rozwiązanie na wyższym poziomie. Doszło przesyłanie wyników na serwer, tworzenie API łączącego moje serwisy z innymi programami oraz dbanie o niezawodność i ciągłość ich pracy.</p>
+    </div>
+    <nav class="next-project" aria-label="Nawigacja między projektami"><a class="back" href="#projekty">← Wszystkie projekty</a><a class="back" href="#ukulele">Następny: Robot na ukulele →</a></nav>
+  </div>
+</article>
+
+<article class="project" id="ukulele" aria-labelledby="ukulele-title">
+  <div class="wrap">
+    <a class="back" href="#projekty">← Wszystkie projekty</a>
+    <header class="project-head"><p class="eyebrow">Ostatni projekt oparty na mikrokontrolerach</p><h2 id="ukulele-title">Robot grający na ukulele.</h2><p>Serwomechanizmy, rejestry przesuwne i stabilny sygnał PWM.</p></header>
+    <div class="prose">
+      <p>Ostatnim projektem opartym na mikrokontrolerach, jaki stworzyłem, było zbudowanie robota grającego na ukulele. Największym wyzwaniem, przed jakim stałem, było programowe generowanie sygnału PWM do sterowania serwomechanizmami. Sterowanie odbywało się za pomocą rejestrów przesuwnych, co wymagało dbania o synchroniczne załączanie i wyłączanie odpowiednich wyprowadzeń. Uznałem, że gotowe układy scalone będą zbyt prostą drogą i musiałem rzucić sobie kilka kłód pod nogi, żeby móc je przeskoczyć 😊.</p>
+      <p>Problemy pojawiły się ze stabilnością zegarów taktujących, co całkowicie rozjeżdżało synchronizację sygnału PWM. Skutkowało to drganiami serwomechanizmów w momencie, kiedy powinny stać nieruchomo. Z pomocą przyszło odrzucenie zaleceń z noty katalogowej producenta i zastosowanie zegara o wyższych parametrach, niż przewidywano. Okazało się to rozwiązaniem problemów i od tego momentu oscyloskop pokazywał to, co chciałem zobaczyć. Stabilny sygnał.</p>
+      <p>Finalnie wystarczyło napisać program, który przyjmował pliki z zapisanymi akordami, aby serwomechanizmy grały w zaplanowany sposób. Niestety gitarzysty ten robot nie pozbawił pracy, ponieważ miał kilka wad konstrukcyjnych, przez co nie do końca czysto grał.</p>
+    </div>
+    <figure class="figure-wide"><button type="button" class="photo-open" data-full-image="assets/ukulele-konstrukcja.png" aria-label="Powiększ zdjęcie"><img src="assets/ukulele-konstrukcja.png" alt="Robot grający na ukulele — cała konstrukcja" width="1220" height="624" loading="lazy"></button><figcaption>Robot grający na ukulele — cała konstrukcja</figcaption></figure>
+    <div class="gallery">
+      <figure><button type="button" class="photo-open" data-full-image="assets/ukulele-sterownik.jpg" aria-label="Powiększ zdjęcie"><img src="assets/ukulele-sterownik.jpg" alt="Własna płytka sterownika" width="1382" height="809" loading="lazy"></button><figcaption>Własna płytka sterownika</figcaption></figure>
+      <figure><button type="button" class="photo-open" data-full-image="assets/ukulele-serwomechanizmy.png" aria-label="Powiększ zdjęcie"><img src="assets/ukulele-serwomechanizmy.png" alt="Serwomechanizmy przy strunach ukulele" width="1205" height="624" loading="lazy"></button><figcaption>Serwomechanizmy przy strunach ukulele</figcaption></figure>
+    </div>
+    <nav class="next-project" aria-label="Nawigacja między projektami"><a class="back" href="#projekty">← Wszystkie projekty</a><a class="back" href="#gry">Następny: Gry na wyświetlaczach →</a></nav>
+  </div>
+</article>
+
+<article class="project" id="gry" aria-labelledby="gry-title">
+  <div class="wrap">
+    <a class="back" href="#projekty">← Wszystkie projekty</a>
+    <header class="project-head"><p class="eyebrow">Programowanie mikrokontrolerów</p><h2 id="gry-title">Proste gry na wyświetlaczach.</h2><p>Kolejne projekty w C/C++ i pierwsza styczność z programowaniem obiektowym.</p></header>
+    <div class="prose">
+      <p>Przez następne 3 lata rozwijałem umiejętności w kierunku programowania mikrokontrolerów oraz języka C/C++. Kolejne projekty przedstawiały proste gry z wykorzystaniem wyświetlaczy OLED. Pomysł nie był rewolucyjny, ale był niezbędną ścieżką nauki pełnej architektury procesora i sposobu działania rejestrów. Była to też pierwsza styczność z programowaniem obiektowym.</p>
+    </div>
+    <div class="gallery narrow">
+      <figure><button type="button" class="photo-open" data-full-image="assets/gra-lcd.png" aria-label="Powiększ zdjęcie"><img src="assets/gra-lcd.png" alt="Prosta gra na wyświetlaczu LCD" width="537" height="723" loading="lazy"></button><figcaption>Prosta gra na wyświetlaczu LCD</figcaption></figure>
+      <figure><button type="button" class="photo-open" data-full-image="assets/gra-oled.png" aria-label="Powiększ zdjęcie"><img src="assets/gra-oled.png" alt="Gra na wyświetlaczu OLED" width="534" height="716" loading="lazy"></button><figcaption>Gra na wyświetlaczu OLED</figcaption></figure>
+    </div>
+    <nav class="next-project" aria-label="Nawigacja między projektami"><a class="back" href="#projekty">← Wszystkie projekty</a><a class="back" href="#dyspenser">Następny: Dyspenser do napojów →</a></nav>
+  </div>
+</article>
+
+<article class="project" id="dyspenser" aria-labelledby="dyspenser-title">
+  <div class="wrap">
+    <a class="back" href="#projekty">← Wszystkie projekty</a>
+    <header class="project-head"><p class="eyebrow">Technikum i pierwsze konstrukcje</p><h2 id="dyspenser-title">Dyspenser do napojów.</h2><p>Drewniany szkielet, własna elektronika i program sterujący.</p></header>
+    <div class="prose">
+      <p>Przygodę z programowaniem rozpoczynałem w trakcie nauki w technikum elektronicznym, gdzie zaciekawił mnie potencjał mikroprocesorów, które pozwalały tworzyć nieograniczoną ilość sprzętu, gadżetów oraz własnych projektów.</p>
+      <p>Moim pierwszym projektem było stworzenie automatycznego dyspensera do napojów. Pomysł był prosty. Zbudować drewniany szkielet, zaprojektować elektronikę oraz odpowiednio zaprogramować kontroler.</p>
+    </div>
+    <div class="gallery">
+      <figure><button type="button" class="photo-open" data-full-image="assets/dyspenser-konstrukcja.jpg" data-rotation="90" aria-label="Powiększ zdjęcie"><span class="rotated" style="aspect-ratio:777/1381;--photo-width:177.7348777%"><img src="assets/dyspenser-konstrukcja.jpg" alt="Budowa obudowy dyspensera" width="1381" height="777" loading="lazy"></span></button><figcaption>Budowa obudowy dyspensera</figcaption></figure>
+      <figure><button type="button" class="photo-open" data-full-image="assets/dyspenser-obudowa.jpg" data-rotation="90" aria-label="Powiększ zdjęcie"><span class="rotated" style="aspect-ratio:620/1101;--photo-width:177.5806452%"><img src="assets/dyspenser-obudowa.jpg" alt="Obudowa po wykończeniu" width="1101" height="620" loading="lazy"></span></button><figcaption>Obudowa po wykończeniu</figcaption></figure>
+      <figure><button type="button" class="photo-open" data-full-image="assets/dyspenser-gotowy.jpg" aria-label="Powiększ zdjęcie"><img src="assets/dyspenser-gotowy.jpg" alt="Gotowy dyspenser do napojów" width="1836" height="3264" loading="lazy"></button><figcaption>Gotowy dyspenser do napojów</figcaption></figure>
+      <figure><button type="button" class="photo-open" data-full-image="assets/dyspenser-elektronika.jpg" aria-label="Powiększ zdjęcie"><img src="assets/dyspenser-elektronika.jpg" alt="Elektronika wewnątrz obudowy" width="1836" height="3264" loading="lazy"></button><figcaption>Elektronika wewnątrz obudowy</figcaption></figure>
+    </div>
+    <nav class="next-project" aria-label="Nawigacja między projektami"><a class="back" href="#projekty">← Wszystkie projekty</a><a class="back" href="#accur8pool">Następny: Accur8Pool →</a></nav>
+  </div>
+</article>
+</main>
+
+<footer class="footer"><div class="wrap"><span>Andrzej Piętka</span><span>Elektronika → C/C++ → Python → Machine Learning</span></div></footer>
+
+<dialog class="dialog" id="image-dialog" aria-labelledby="dialog-caption">
+  <form method="dialog"><button class="dialog-close" aria-label="Zamknij powiększenie">Zamknij ×</button></form>
+  <div class="dialog-stage"><div class="dialog-box"><img id="dialog-image" alt=""></div></div>
+  <p id="dialog-caption"></p>
+</dialog>
+
+<script>
+(function(){
+  /* Prosty router: #id projektu pokazuje jego opis, każdy inny adres — stronę główną. */
+  var projects=document.querySelectorAll('.project');
+  var lastHomeAnchor='projekty';
+  function route(){
+    var id=decodeURIComponent(location.hash.slice(1));
+    var target=id&&document.getElementById(id);
+    var isProject=target&&target.classList.contains('project');
+    projects.forEach(function(p){p.classList.toggle('is-active',p===target);});
+    document.body.classList.toggle('view-project',!!isProject);
+    if(isProject){window.scrollTo({top:0,behavior:'instant'});target.querySelector('h2').focus({preventScroll:true});}
+    else if(target){target.scrollIntoView({behavior:'instant'});}
+  }
+  projects.forEach(function(p){p.querySelector('h2').setAttribute('tabindex','-1');});
+  window.addEventListener('hashchange',route);
+  route();
+
+  /* Powiększanie zdjęć */
+  var dialog=document.getElementById('image-dialog');
+  var image=document.getElementById('dialog-image');
+  var box=dialog.querySelector('.dialog-box');
+  var caption=document.getElementById('dialog-caption');
+  var rotation=0;
+  function fit(){
+    if(!image.naturalWidth||!dialog.open)return;
+    var w=image.naturalWidth,h=image.naturalHeight;
+    var ow=rotation?h:w,oh=rotation?w:h;
+    var s=Math.min((window.innerWidth-70)/ow,(window.innerHeight-180)/oh,1);
+    box.style.width=ow*s+'px';box.style.height=oh*s+'px';
+    image.style.width=w*s+'px';image.style.height=h*s+'px';
+    image.style.transform='translate(-50%,-50%) rotate('+rotation+'deg)';
+  }
+  image.addEventListener('load',fit);
+  window.addEventListener('resize',fit);
+  document.querySelectorAll('[data-full-image]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      rotation=Number(btn.dataset.rotation)||0;
+      caption.textContent=btn.closest('figure').querySelector('figcaption').textContent;
+      image.alt=btn.querySelector('img').alt;
+      image.src=btn.dataset.fullImage;
+      dialog.showModal();
+      document.documentElement.classList.add('modal-open');
+      fit();
+    });
+  });
+  dialog.addEventListener('close',function(){document.documentElement.classList.remove('modal-open');});
+  dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close();});
+})();
+</script>
+</body>
+</html>

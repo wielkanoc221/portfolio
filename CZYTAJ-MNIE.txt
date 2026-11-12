@@ -8,3 +8,7 @@ Cała strona działa lokalnie, bez instalowania dodatkowych programów.
 Aby umieścić stronę na własnym serwerze, skopiuj index.html i folder assets do katalogu obsługiwanego przez serwer WWW.
 
 Zawartość: pełna treść portfolio, wszystkie 11 oryginalnych zdjęć i wykresów, style CSS i skrypt JavaScript.
+
+ZDJĘCIE PROFILOWE
+Wrzuć swoje zdjęcie jako assets/zdjecie.jpg (najlepiej pionowe, proporcje ok. 4:5).
+Dopóki go nie ma, w jego miejscu wyświetlają się inicjały „AP”.
