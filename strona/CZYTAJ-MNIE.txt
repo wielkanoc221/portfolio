@@ -1,0 +1,11 @@
+PORTFOLIO — ANDRZEJ PIĘTKA
+
+Archiwum ma dwa foldery:
+- strona: index.html, styles.css, app.js i ta instrukcja.
+- zdjecia: wszystkie 11 oryginalnych zdjęć i wykresów.
+
+Rozpakuj całe archiwum. Otwórz strona/index.html w przeglądarce.
+Foldery strona i zdjecia muszą pozostać obok siebie.
+Ścieżki do zdjęć mają postać ../zdjecia/nazwa-pliku.
+
+Na serwer skopiuj oba foldery, zachowując tę strukturę.
