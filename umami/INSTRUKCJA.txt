@@ -6,8 +6,8 @@ STATYSTYKI STRONY — UMAMI (na własnym serwerze, bez ciasteczek, bez banera RO
 2. Na serwerze zainstaluj Dockera (jeśli go nie ma):
      curl -fsSL https://get.docker.com | sh
 
-3. W folderze /root/portfolio/umami utwórz plik .env z dwoma losowymi hasłami:
-     cd /root/portfolio/umami
+3. W folderze /var/www/portfolio/umami utwórz plik .env z dwoma losowymi hasłami:
+     cd /var/www/portfolio/umami
      echo "DB_PASSWORD=$(openssl rand -hex 16)" > .env
      echo "APP_SECRET=$(openssl rand -hex 32)" >> .env
    (plik .env nie trafia do repozytorium)
@@ -16,7 +16,7 @@ STATYSTYKI STRONY — UMAMI (na własnym serwerze, bez ciasteczek, bez banera RO
      docker compose up -d
 
 5. Podłącz nginx i włącz HTTPS:
-     sudo cp /root/portfolio/nginx/statystyki.conf /etc/nginx/sites-enabled/
+     sudo cp /var/www/portfolio/nginx/statystyki.conf /etc/nginx/sites-enabled/
      sudo nginx -t && sudo systemctl reload nginx
      sudo certbot --nginx -d statystyki.andrzejpietka.pl
 
