@@ -114,5 +114,6 @@
     var href=a.getAttribute('href')||'';
     if(href.indexOf('accur8pool.pl')!==-1)track('klik-accur8pool-pl',{miejsce:a.classList.contains('site-link')?'przycisk':'tekst'});
     else if(href.indexOf('analiza-danych')!==-1)track('klik-analiza-danych');
+    else if(href.indexOf('CV-Andrzej-Pietka.pdf')!==-1)track('pobranie-cv',{miejsce:a.closest('footer')?'stopka':'gora'});
   });
 })();

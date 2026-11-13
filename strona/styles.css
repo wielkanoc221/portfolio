@@ -165,3 +165,6 @@ html.modal-open{overflow:hidden}
 .revealed{text-decoration:none}
 .contact .revealed{color:var(--sage-dark);font-weight:600;font-size:15px}
 .revealed:hover{text-decoration:underline}
+/* Pobieranie CV */
+.cv-download{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:11px 22px;border-radius:999px;background:var(--sage-dark);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s}
+.cv-download:hover{background:var(--ink)}
