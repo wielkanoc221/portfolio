@@ -135,3 +135,9 @@ html.modal-open{overflow:hidden}
 .prose+.prose{margin-top:20px}
 .site-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 20px;border-radius:999px;background:var(--sage-dark);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s}
 .site-link:hover{background:var(--ink)}
+.contact{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-top:22px}
+.contact a{color:var(--sage-dark);font-weight:600;text-decoration:none;font-size:15px}
+.contact a:hover{text-decoration:underline}
+.footer-contact{display:flex;flex-wrap:wrap;gap:6px 20px}
+.footer-contact a{text-decoration:none}
+.footer-contact a:hover{color:var(--ink);text-decoration:underline}
