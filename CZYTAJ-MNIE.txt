@@ -1,10 +1,18 @@
 PORTFOLIO — ANDRZEJ PIĘTKA
 
-1. Rozpakuj całe archiwum ZIP.
-2. Otwórz index.html w przeglądarce.
+Struktura:
+  strona/   — index.html, analiza-danych.html, styles.css, app.js
+  zdjecia/  — wyłącznie zdjęcia i wykresy
 
-Pliki index.html i folder assets muszą pozostać obok siebie.
-Cała strona działa lokalnie, bez instalowania dodatkowych programów.
-Aby umieścić stronę na własnym serwerze, skopiuj index.html i folder assets do katalogu obsługiwanego przez serwer WWW.
+1. Otwórz strona/index.html w przeglądarce.
+2. Foldery strona i zdjecia muszą leżeć obok siebie (strona odwołuje się do ../zdjecia/).
 
-Zawartość: pełna treść portfolio, wszystkie 11 oryginalnych zdjęć i wykresów, style CSS i skrypt JavaScript.
+ZDJĘCIE PROFILOWE
+Wrzuć swoje zdjęcie jako zdjecia/zdjecie.jpg (najlepiej pionowe, proporcje ok. 4:5).
+Dopóki go nie ma, w jego miejscu wyświetlają się inicjały „AP”.
+
+ZRZUTY EKRANU ACCUR8POOL (opcjonalne — brakujące po prostu się nie wyświetlają)
+  zdjecia/accur8pool-etykietowanie.png  — dashboard do etykietowania
+  zdjecia/accur8pool-predykcje.png      — predykcje modelu XGBoost
+  zdjecia/accur8pool-strona.png         — strona accur8pool.pl
+  zdjecia/accur8pool-3d.png             — wizualizacja 3D ruchu ręki
