@@ -133,3 +133,5 @@ html.modal-open{overflow:hidden}
 .prose ol li{margin-bottom:6px}
 .prose .stat{display:inline-block;background:#eef0e8;color:var(--sage-dark);border-radius:4px;padding:0 6px;font-weight:600}
 .prose+.prose{margin-top:20px}
+.site-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 20px;border-radius:999px;background:var(--sage-dark);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s}
+.site-link:hover{background:var(--ink)}
