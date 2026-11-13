@@ -1,0 +1,46 @@
+STATYSTYKI STRONY — UMAMI (na własnym serwerze, bez ciasteczek, bez banera RODO)
+
+1. DNS: u dostawcy domeny dodaj rekord A dla "statystyki.andrzejpietka.pl"
+   wskazujący na IP Twojego serwera (ten sam co andrzejpietka.pl).
+
+2. Na serwerze zainstaluj Dockera (jeśli go nie ma):
+     curl -fsSL https://get.docker.com | sh
+
+3. W folderze /root/portfolio/umami utwórz plik .env z dwoma losowymi hasłami:
+     cd /root/portfolio/umami
+     echo "DB_PASSWORD=$(openssl rand -hex 16)" > .env
+     echo "APP_SECRET=$(openssl rand -hex 32)" >> .env
+   (plik .env nie trafia do repozytorium)
+
+4. Uruchom Umami:
+     docker compose up -d
+
+5. Podłącz nginx i włącz HTTPS:
+     sudo cp /root/portfolio/nginx/statystyki.conf /etc/nginx/sites-enabled/
+     sudo nginx -t && sudo systemctl reload nginx
+     sudo certbot --nginx -d statystyki.andrzejpietka.pl
+
+6. Wejdź na https://statystyki.andrzejpietka.pl
+   Login: admin   Hasło: umami   -> OD RAZU ZMIEŃ HASŁO (Settings -> Profile).
+
+7. Settings -> Websites -> Add website:
+     Name: Portfolio   Domain: andrzejpietka.pl
+   Skopiuj "Website ID" i wklej go w strona/index.html zamiast
+   WKLEJ-TUTAJ-WEBSITE-ID.
+
+8. Żeby nie liczyć własnych wejść: otwórz swoją stronę i w konsoli przeglądarki (F12) wpisz
+     localStorage.setItem('umami.disabled', 1)
+
+CO ZOBACZYSZ W PANELU
+- Wejścia na stronę, unikalni odwiedzający, skąd przyszli (Google, LinkedIn...),
+  kraj/miasto, urządzenie (telefon/komputer), przeglądarka.
+- Zakładka "Events" — zdarzenia wysyłane przez stronę:
+    otwarcie-projektu   (projekt: accur8pool / ukulele / gry / dyspenser)
+    czas-czytania       (projekt, sekundy — liczone tylko gdy karta jest widoczna)
+    pokaz-telefon       (miejsce: gora / stopka)
+    pokaz-email         (miejsce: gora / stopka)
+    klik-telefon, klik-email   (kliknięcie odkrytego numeru / adresu)
+    klik-accur8pool-pl  (wyjście na accur8pool.pl)
+    klik-analiza-danych (otwarcie notatnika z analizą)
+  Szczegóły (np. który projekt, ile sekund) są w zakładce Events -> kliknij zdarzenie,
+  albo w Reports -> "Event data".
