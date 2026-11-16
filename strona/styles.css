@@ -133,3 +133,38 @@ html.modal-open{overflow:hidden}
 .prose ol li{margin-bottom:6px}
 .prose .stat{display:inline-block;background:#eef0e8;color:var(--sage-dark);border-radius:4px;padding:0 6px;font-weight:600}
 .prose+.prose{margin-top:20px}
+.site-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 20px;border-radius:999px;background:var(--sage-dark);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s}
+.site-link:hover{background:var(--ink)}
+.contact{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-top:22px}
+.contact a{color:var(--sage-dark);font-weight:600;text-decoration:none;font-size:15px}
+.contact a:hover{text-decoration:underline}
+.footer-contact{display:flex;flex-wrap:wrap;gap:6px 20px}
+.footer-contact a{text-decoration:none}
+.footer-contact a:hover{color:var(--ink);text-decoration:underline}
+/* Wyróżniony projekt: Accur8Pool */
+.card-featured{grid-column:1/-1;flex-direction:row;border:2px solid var(--sage);box-shadow:0 30px 50px -36px #30291fb0}
+.card-featured .card-cover{flex:0 0 55%;aspect-ratio:auto;min-height:340px;border-bottom:0;border-right:1px solid var(--line)}
+.card-featured .card-body{padding:34px 36px;justify-content:center}
+.card-featured h3{font-size:clamp(32px,3.6vw,42px);margin-top:10px}
+.card-featured .card-body p:not(.eyebrow){font-size:16px;flex:0;margin-top:12px}
+.badge{align-self:flex-start;margin-bottom:6px;color:var(--sage-dark);font-size:30px;line-height:1}
+.card-more-strong{margin-top:24px;align-self:flex-start;padding:10px 18px;border-radius:999px;border:1px solid var(--sage-dark);font-size:14px}
+.card-featured:hover .card-more-strong{background:var(--sage-dark);color:#fff;text-decoration:none}
+@media (max-width:860px){
+  .card-featured{flex-direction:column}
+  .card-featured .card-cover{flex:none;aspect-ratio:16/10;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
+  .card-featured .card-body{padding:24px}
+}
+/* Rozmazany kontakt */
+.reveal{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit}
+.contact .reveal{color:var(--sage-dark);font-weight:600;font-size:15px}
+.reveal-value{filter:blur(5px);user-select:none;transition:filter .2s}
+.reveal:hover .reveal-value{filter:blur(4px)}
+.reveal-hint{font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:1px 8px;margin-left:4px;opacity:.8}
+.reveal:hover .reveal-hint{opacity:1}
+.revealed{text-decoration:none}
+.contact .revealed{color:var(--sage-dark);font-weight:600;font-size:15px}
+.revealed:hover{text-decoration:underline}
+/* Pobieranie CV */
+.cv-download{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:11px 22px;border-radius:999px;background:var(--sage-dark);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s}
+.cv-download:hover{background:var(--ink)}
